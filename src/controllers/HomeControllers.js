@@ -24,6 +24,12 @@ export const setUpFacebookUserProfile = (req, res) => {
         call_to_actions: [
           {
             type: "web_url",
+            title: "Github",
+            url: "https://github.com/iamando/",
+            webview_height_ratio: "full",
+          },
+          {
+            type: "web_url",
             title: "Linkedin",
             url: "https://www.linkedin.com/in/iamando/",
             webview_height_ratio: "full",

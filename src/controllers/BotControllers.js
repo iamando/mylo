@@ -3,6 +3,8 @@ const request = require("request");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const { getFacebookUsername } = require("../services/BotServices");
+
 export const getWebhook = async (req, res) => {
   // Your verify token. Should be a random string.
   let VERIFY_TOKEN = process.env.MY_VERIFY_TOKEN;
@@ -106,19 +108,27 @@ export const handleMessage = (sender_psid, received_message) => {
 };
 
 // Handles messaging_postbacks events
-export const handlePostback = (sender_psid, received_postback) => {
+export const handlePostback = async (sender_psid, received_postback) => {
   let response;
 
   // Get the payload for the postback
   let payload = received_postback.payload;
 
   // Set the response based on the postback payload
-  if (payload === "yes") {
-    response = { text: "Thanks!" };
-  } else if (payload === "no") {
-    response = { text: "Oops, try sending another image." };
-  } else if (payload === "GET_STARTED") {
-    response = { text: "Hi there" };
+  switch (payload) {
+    case "GET_STARTED":
+      // Get username
+      const username = await getFacebookUsername(sender_psid);
+      response = { text: `Hello ${username}, my name is Mylo` };
+      break;
+    case "no":
+      response = {};
+      break;
+    case "yes":
+      response = {};
+      break;
+    default:
+      console.log("Something wrong with switch case payload");
   }
 
   // Send the message to acknowledge the postback

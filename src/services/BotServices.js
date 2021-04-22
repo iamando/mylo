@@ -41,7 +41,7 @@ export const sendResponseWelcomeNewUser = (username, sender_psid) => {
             elements: [
               {
                 title: "Mylo",
-                subtitle: "A smart messenger assistant 🤖",
+                subtitle: "A smart messenger assistant 💬",
                 image_url:
                   "https://res.cloudinary.com/host8000/image/upload/v1619112275/mylo/mylo_ldco7w.png",
                 buttons: [

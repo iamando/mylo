@@ -3,7 +3,10 @@ const request = require("request");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const { getFacebookUsername } = require("../services/BotServices");
+const {
+  getFacebookUsername,
+  sendResponseWelcomeNewUser,
+} = require("../services/BotServices");
 
 export const getWebhook = async (req, res) => {
   // Your verify token. Should be a random string.
@@ -119,7 +122,9 @@ export const handlePostback = async (sender_psid, received_postback) => {
     case "GET_STARTED":
       // Get username
       const username = await getFacebookUsername(sender_psid);
-      response = { text: `Hello ${username}, my name is Mylo` };
+      await sendResponseWelcomeNewUser(username, sender_psid);
+
+      // response = { text: `Hello ${username}, my name is Mylo` };
       break;
     case "no":
       response = {};
@@ -132,7 +137,7 @@ export const handlePostback = async (sender_psid, received_postback) => {
   }
 
   // Send the message to acknowledge the postback
-  callSendAPI(sender_psid, response);
+  // callSendAPI(sender_psid, response);
 };
 
 // Sends response messages via the Send API

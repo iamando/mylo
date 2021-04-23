@@ -112,7 +112,7 @@ export const sendMenu = (sender_psid) => {
                 buttons: [
                   {
                     type: "postback",
-                    title: "CHECK",
+                    title: "DEEZER",
                     payload: "DEEZER",
                   },
                 ],
@@ -125,7 +125,7 @@ export const sendMenu = (sender_psid) => {
                 buttons: [
                   {
                     type: "postback",
-                    title: "CHECK",
+                    title: "YOUTUBE",
                     payload: "YOUTUBE",
                   },
                 ],
@@ -139,7 +139,7 @@ export const sendMenu = (sender_psid) => {
                 buttons: [
                   {
                     type: "postback",
-                    title: "CHECK",
+                    title: "GAMES",
                     payload: "GAMES",
                   },
                 ],
@@ -152,7 +152,7 @@ export const sendMenu = (sender_psid) => {
                 buttons: [
                   {
                     type: "postback",
-                    title: "CHECK",
+                    title: "WEATHER",
                     payload: "WEATHER",
                   },
                 ],

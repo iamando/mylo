@@ -67,6 +67,81 @@ export const sendResponseWelcomeNewUser = (username, sender_psid) => {
   });
 };
 
+export const sendMenu = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response = {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "generic",
+            elements: [
+              {
+                title: "MUSIC",
+                subtitle:
+                  "Check new or latest popular music now in all streaming platform",
+                image_url:
+                  "https://res.cloudinary.com/host8000/image/upload/v1619165363/mylo/music_ltnmqw.png",
+                buttons: [
+                  {
+                    type: "postback",
+                    title: "CHECK",
+                    payload: "MUSIC",
+                  },
+                ],
+              },
+              {
+                title: "YOUTUBE",
+                subtitle: "Check new or latest popular video on Youtube",
+                image_url:
+                  "https://res.cloudinary.com/host8000/image/upload/v1619165363/mylo/youtube_obpdlc.png",
+                buttons: [
+                  {
+                    type: "postback",
+                    title: "CHECK",
+                    payload: "YOUTUBE",
+                  },
+                ],
+              },
+              {
+                title: "GAMES",
+                subtitle:
+                  "Check new or latest popular games on all games platform",
+                image_url:
+                  "https://res.cloudinary.com/host8000/image/upload/v1619165363/mylo/games_vbtu0y.jpg",
+                buttons: [
+                  {
+                    type: "postback",
+                    title: "CHECK",
+                    payload: "GAMES",
+                  },
+                ],
+              },
+              {
+                title: "WEATHER",
+                subtitle: "Check your local city weather with all forecast",
+                image_url:
+                  "https://res.cloudinary.com/host8000/image/upload/v1619165456/mylo/weather_oteplo.jpg",
+                buttons: [
+                  {
+                    type: "postback",
+                    title: "CHECK",
+                    payload: "WEATHER",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      };
+      // Send message
+      await sendMessage(sender_psid, response);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 const sendMessage = (sender_psid, response) => {
   // Construct the message body
   let request_body = {

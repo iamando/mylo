@@ -6,6 +6,7 @@ dotenv.config();
 const {
   getFacebookUsername,
   sendResponseWelcomeNewUser,
+  sendMenu,
 } = require("../services/BotServices");
 
 export const getWebhook = async (req, res) => {
@@ -123,11 +124,9 @@ export const handlePostback = async (sender_psid, received_postback) => {
       // Get username
       const username = await getFacebookUsername(sender_psid);
       await sendResponseWelcomeNewUser(username, sender_psid);
-
-      // response = { text: `Hello ${username}, my name is Mylo` };
       break;
-    case "no":
-      response = {};
+    case "MENU":
+      await sendMenu(sender_psid);
       break;
     case "yes":
       response = {};

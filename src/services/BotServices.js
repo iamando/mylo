@@ -275,7 +275,7 @@ export const getDeezerAlbums = (sender_psid) => {
 
       body = JSON.parse(body);
       const albums = body.albums.data;
-      console.log(albums);
+      resolve(albums);
     });
   });
 };
@@ -294,7 +294,7 @@ export const getDeezerArtists = (sender_psid) => {
 
       body = JSON.parse(body);
       const artists = body.artists.data;
-      console.log(artists);
+      resolve(artists);
     });
   });
 };
@@ -313,7 +313,7 @@ export const getDeezerPlaylists = (sender_psid) => {
 
       body = JSON.parse(body);
       const playlists = body.playlists.data;
-      console.log(playlists);
+      resolve(playlists);
     });
   });
 };
@@ -349,11 +349,98 @@ export const sendDeezerTracks = (tracks, sender_psid) => {
   });
 };
 
-export const sendDeezerAlbums = () => {};
+export const sendDeezerAlbums = (albums, sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response = {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "generic",
+            elements: albums.map((album) => ({
+              title: album.title,
+              subtitle: album.artist.name,
+              image_url: album.cover_big,
+              buttons: [
+                {
+                  type: "postback",
+                  title: "DOWNLOAD ALBUM",
+                  payload: "DOWNLOAD_ALBUM",
+                },
+              ],
+            })),
+          },
+        },
+      };
+      // Send message
+      await sendMessage(sender_psid, response);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 
-export const sendDeezerArtists = () => {};
+export const sendDeezerArtists = (artists, sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response = {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "generic",
+            elements: artists.map((artist) => ({
+              title: artist.name,
+              subtitle: artist.type,
+              image_url: artist.picture_big,
+              buttons: [
+                {
+                  type: "postback",
+                  title: "LINK",
+                  payload: "LINK",
+                },
+              ],
+            })),
+          },
+        },
+      };
+      // Send message
+      await sendMessage(sender_psid, response);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 
-export const sendDeezerPlaylists = () => {};
+export const sendDeezerPlaylists = (playlists, sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response = {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "generic",
+            elements: playlists.map((playlist) => ({
+              title: playlist.title,
+              subtitle: playlist.user.name,
+              image_url: playlist.picture_big,
+              buttons: [
+                {
+                  type: "postback",
+                  title: "LISTEN PLAYLIST",
+                  payload: "LISTEN_PLAYLIST",
+                },
+              ],
+            })),
+          },
+        },
+      };
+      // Send message
+      await sendMessage(sender_psid, response);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 
 export const getVideo = (sender_psid) => {};
 

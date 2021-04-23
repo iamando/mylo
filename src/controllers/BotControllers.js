@@ -13,6 +13,12 @@ const {
   getGames,
   getDeezerTracks,
   sendDeezerTracks,
+  getDeezerAlbums,
+  sendDeezerAlbums,
+  getDeezerArtists,
+  sendDeezerArtists,
+  getDeezerPlaylists,
+  sendDeezerPlaylists,
 } = require("../services/BotServices");
 
 export const getWebhook = async (req, res) => {
@@ -140,6 +146,18 @@ export const handlePostback = async (sender_psid, received_postback) => {
     case "DEEZER_TRACKS":
       const tracks = await getDeezerTracks(sender_psid);
       await sendDeezerTracks(tracks, sender_psid);
+      break;
+    case "DEEZER_ALBUMS":
+      const albums = await getDeezerAlbums(sender_psid);
+      await sendDeezerAlbums(albums, sender_psid);
+      break;
+    case "DEEZER_ARTISTS":
+      const artists = await getDeezerArtists(sender_psid);
+      await sendDeezerArtists(artists, sender_psid);
+      break;
+    case "DEEZER_PLAYLISTS":
+      const playlists = await getDeezerPlaylists(sender_psid);
+      await sendDeezerPlaylists(playlists, sender_psid);
       break;
     case "YOUTUBE":
       await getVideo(sender_psid);

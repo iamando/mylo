@@ -444,7 +444,7 @@ export const sendDeezerPlaylists = (playlists, sender_psid) => {
 
 export const getVideo = (sender_psid) => {};
 
-export const getGames = (sender_psid) => {
+export const getGames = () => {
   const options = {
     method: "GET",
     url: "https://rawg-video-games-database.p.rapidapi.com/games",

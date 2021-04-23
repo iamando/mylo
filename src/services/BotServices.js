@@ -170,6 +170,53 @@ export const sendMenu = (sender_psid) => {
 };
 
 export const sendMusicMenu = (sender_psid) => {
+  // return new Promise(async (resolve, reject) => {
+  //   try {
+  //     let response = {
+  //       attachment: {
+  //         type: "template",
+  //         payload: {
+  //           template_type: "generic",
+  //           elements: [
+  //             {
+  //               title: "DEEZER",
+  //               subtitle:
+  //                 "Check new or latest popular music chart now on Deezer",
+  //               image_url:
+  //                 "https://res.cloudinary.com/host8000/image/upload/v1619167224/mylo/deezer_yxwvdr.png",
+  //               buttons: [
+  //                 {
+  //                   type: "postback",
+  //                   title: "TRACKS",
+  //                   payload: "DEEZER_TRACKS",
+  //                 },
+  //                 {
+  //                   type: "postback",
+  //                   title: "ALBUMS",
+  //                   payload: "DEEZER_ALBUMS",
+  //                 },
+  //                 {
+  //                   type: "postback",
+  //                   title: "ARTISTS",
+  //                   payload: "DEEZER_ARTISTS",
+  //                 },
+  //                 {
+  //                   type: "postback",
+  //                   title: "PLAYLISTS",
+  //                   payload: "DEEZER_PLAYLISTS",
+  //                 },
+  //               ],
+  //             },
+  //           ],
+  //         },
+  //       },
+  //     };
+  //     // Send message
+  //     await sendMessage(sender_psid, response);
+  //   } catch (error) {
+  //     reject(error);
+  //   }
+  // });
   return new Promise(async (resolve, reject) => {
     try {
       let response = {
@@ -187,23 +234,48 @@ export const sendMusicMenu = (sender_psid) => {
                 buttons: [
                   {
                     type: "postback",
-                    title: "TRACKS",
-                    payload: "DEEZER_TRACKS",
+                    title: "DEEZER",
+                    payload: "DEEZER",
                   },
+                ],
+              },
+              {
+                title: "YOUTUBE",
+                subtitle: "Check new or latest popular video on Youtube",
+                image_url:
+                  "https://res.cloudinary.com/host8000/image/upload/v1619165363/mylo/youtube_obpdlc.png",
+                buttons: [
                   {
                     type: "postback",
-                    title: "ALBUMS",
-                    payload: "DEEZER_ALBUMS",
+                    title: "YOUTUBE",
+                    payload: "YOUTUBE",
                   },
+                ],
+              },
+              {
+                title: "GAMES",
+                subtitle:
+                  "Check new or latest popular games on all games platform",
+                image_url:
+                  "https://res.cloudinary.com/host8000/image/upload/v1619165363/mylo/games_vbtu0y.jpg",
+                buttons: [
                   {
                     type: "postback",
-                    title: "ARTISTS",
-                    payload: "DEEZER_ARTISTS",
+                    title: "GAMES",
+                    payload: "GAMES",
                   },
+                ],
+              },
+              {
+                title: "WEATHER",
+                subtitle: "Check your local city weather with all forecast",
+                image_url:
+                  "https://res.cloudinary.com/host8000/image/upload/v1619165456/mylo/weather_oteplo.jpg",
+                buttons: [
                   {
                     type: "postback",
-                    title: "PLAYLISTS",
-                    payload: "DEEZER_PLAYLISTS",
+                    title: "WEATHER",
+                    payload: "WEATHER",
                   },
                 ],
               },

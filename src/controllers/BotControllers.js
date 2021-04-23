@@ -133,7 +133,7 @@ export const handlePostback = async (sender_psid, received_postback) => {
       await sendMenu(sender_psid);
       break;
     case "DEEZER":
-      await sendMenu(sender_psid);
+      await sendMusicMenu(sender_psid);
       break;
     case "YOUTUBE":
       await getVideo(sender_psid);

@@ -190,21 +190,6 @@ export const sendMusicMenu = (sender_psid) => {
                     title: "TRACKS",
                     payload: "DEEZER_TRACKS",
                   },
-                  {
-                    type: "postback",
-                    title: "ALBUMS",
-                    payload: "DEEZER_ALBUMS",
-                  },
-                  {
-                    type: "postback",
-                    title: "ARTISTS",
-                    payload: "DEEZER_ARTISTS",
-                  },
-                  {
-                    type: "postback",
-                    title: "PLAYLISTS",
-                    payload: "DEEZER_PLAYLISTS",
-                  },
                 ],
               },
             ],

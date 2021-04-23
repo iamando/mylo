@@ -11,6 +11,8 @@ const {
   getVideo,
   getWeather,
   getGames,
+  getDeezerTracks,
+  sendDeezerTracks,
 } = require("../services/BotServices");
 
 export const getWebhook = async (req, res) => {
@@ -134,6 +136,10 @@ export const handlePostback = async (sender_psid, received_postback) => {
       break;
     case "DEEZER":
       await sendMusicMenu(sender_psid);
+      break;
+    case "DEEZER_TRACKS":
+      const tracks = await getDeezerTracks(sender_psid);
+      await sendDeezerTracks(tracks, sender_psid);
       break;
     case "YOUTUBE":
       await getVideo(sender_psid);

@@ -242,18 +242,118 @@ export const sendMusicMenu = (sender_psid) => {
   });
 };
 
-export const getMusic = (sender_psid) => {
-  const options = {
-    method: "GET",
-    url: "http://api.deezer.com/chart",
-  };
+export const getDeezerTracks = (sender_psid) => {
+  return new Promise((resolve, reject) => {
+    const options = {
+      method: "GET",
+      url: "http://api.deezer.com/chart",
+    };
 
-  request(options, (error, response, body) => {
-    if (error) throw new Error(error);
+    request(options, (error, response, body) => {
+      if (error) {
+        reject(error);
+      }
 
-    console.log(body);
+      body = JSON.parse(body);
+      const tracks = body.tracks.data;
+      resolve(tracks);
+    });
   });
 };
+
+export const getDeezerAlbums = (sender_psid) => {
+  return new Promise((resolve, reject) => {
+    const options = {
+      method: "GET",
+      url: "http://api.deezer.com/chart",
+    };
+
+    request(options, (error, response, body) => {
+      if (error) {
+        reject(error);
+      }
+
+      body = JSON.parse(body);
+      const albums = body.albums.data;
+      console.log(albums);
+    });
+  });
+};
+
+export const getDeezerArtists = (sender_psid) => {
+  return new Promise((resolve, reject) => {
+    const options = {
+      method: "GET",
+      url: "http://api.deezer.com/chart",
+    };
+
+    request(options, (error, response, body) => {
+      if (error) {
+        reject(error);
+      }
+
+      body = JSON.parse(body);
+      const artists = body.artists.data;
+      console.log(artists);
+    });
+  });
+};
+
+export const getDeezerPlaylists = (sender_psid) => {
+  return new Promise((resolve, reject) => {
+    const options = {
+      method: "GET",
+      url: "http://api.deezer.com/chart",
+    };
+
+    request(options, (error, response, body) => {
+      if (error) {
+        reject(error);
+      }
+
+      body = JSON.parse(body);
+      const playlists = body.playlists.data;
+      console.log(playlists);
+    });
+  });
+};
+
+export const sendDeezerTracks = (tracks, sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response = {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "generic",
+            elements: tracks.map((track) => ({
+              title: track.title,
+              subtitle: track.artist.name,
+              image_url: track.album.cover_big,
+              buttons: [
+                {
+                  type: "postback",
+                  title: "LISTEN PREVIEW",
+                  payload: "LISTEN_PREVIEW",
+                },
+              ],
+            })),
+          },
+        },
+      };
+      // Send message
+      await sendMessage(sender_psid, response);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+export const sendDeezerAlbums = () => {};
+
+export const sendDeezerArtists = () => {};
+
+export const sendDeezerPlaylists = () => {};
 
 export const getVideo = (sender_psid) => {};
 

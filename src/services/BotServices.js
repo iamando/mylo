@@ -395,8 +395,8 @@ export const sendDeezerArtists = (artists, sender_psid) => {
               buttons: [
                 {
                   type: "postback",
-                  title: "LINK",
-                  payload: "LINK",
+                  title: "VIEW ARTIST",
+                  payload: "VIEW_ARTIST",
                 },
               ],
             })),

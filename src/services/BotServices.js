@@ -179,9 +179,8 @@ export const sendMusicMenu = (sender_psid) => {
             template_type: "generic",
             elements: [
               {
-                title: "DEEZER",
-                subtitle:
-                  "Check new or latest popular music chart now on Deezer",
+                title: "TRACKS",
+                subtitle: "TRACKS: Check all latest tracks on Deezer now",
                 image_url:
                   "https://res.cloudinary.com/host8000/image/upload/v1619167224/mylo/deezer_yxwvdr.png",
                 buttons: [
@@ -189,6 +188,45 @@ export const sendMusicMenu = (sender_psid) => {
                     type: "postback",
                     title: "TRACKS",
                     payload: "DEEZER_TRACKS",
+                  },
+                ],
+              },
+              {
+                title: "ALBUMS",
+                subtitle: "ALBUMS: Check all latest albums on Deezer now",
+                image_url:
+                  "https://res.cloudinary.com/host8000/image/upload/v1619167224/mylo/deezer_yxwvdr.png",
+                buttons: [
+                  {
+                    type: "postback",
+                    title: "ALBUMS",
+                    payload: "DEEZER_ALBUMS",
+                  },
+                ],
+              },
+              {
+                title: "ARTISTS",
+                subtitle: "ARTISTS: Check all latest artists on Deezer now",
+                image_url:
+                  "https://res.cloudinary.com/host8000/image/upload/v1619167224/mylo/deezer_yxwvdr.png",
+                buttons: [
+                  {
+                    type: "postback",
+                    title: "ARTISTS",
+                    payload: "DEEZER_ARTISTS",
+                  },
+                ],
+              },
+              {
+                title: "PLAYLISTS",
+                subtitle: "PLAYLISTS: Check all latest playlists on Deezer now",
+                image_url:
+                  "https://res.cloudinary.com/host8000/image/upload/v1619167224/mylo/deezer_yxwvdr.png",
+                buttons: [
+                  {
+                    type: "postback",
+                    title: "PLAYLISTS",
+                    payload: "DEEZER_PLAYLISTS",
                   },
                 ],
               },

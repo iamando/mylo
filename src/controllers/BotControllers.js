@@ -7,6 +7,10 @@ const {
   getFacebookUsername,
   sendResponseWelcomeNewUser,
   sendMenu,
+  getMusic,
+  getVideo,
+  getWeather,
+  getGames,
 } = require("../services/BotServices");
 
 export const getWebhook = async (req, res) => {
@@ -128,8 +132,17 @@ export const handlePostback = async (sender_psid, received_postback) => {
     case "MENU":
       await sendMenu(sender_psid);
       break;
-    case "yes":
-      response = {};
+    case "DEEZER":
+      await getMusic(sender_psid);
+      break;
+    case "YOUTUBE":
+      await getVideo(sender_psid);
+      break;
+    case "GAMES":
+      await getGames(sender_psid);
+      break;
+    case "WEATHER":
+      await getWeather(sender_psid);
       break;
     default:
       console.log("Something wrong with switch case payload");

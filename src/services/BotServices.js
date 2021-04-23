@@ -3,6 +3,33 @@ const request = require("request");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const sendMessage = (sender_psid, response) => {
+  // Construct the message body
+  let request_body = {
+    recipient: {
+      id: sender_psid,
+    },
+    message: response,
+  };
+
+  // Send the HTTP request to the Messenger Platform
+  request(
+    {
+      uri: "https://graph.facebook.com/v6.0/me/messages",
+      qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+      method: "POST",
+      json: request_body,
+    },
+    (err, res, body) => {
+      if (!err) {
+        console.log("message sent!");
+      } else {
+        console.error("Unable to send message:" + err);
+      }
+    }
+  );
+};
+
 // Get facebook username
 export const getFacebookUsername = (sender_psid) => {
   return new Promise((resolve, reject) => {
@@ -77,16 +104,16 @@ export const sendMenu = (sender_psid) => {
             template_type: "generic",
             elements: [
               {
-                title: "MUSIC",
+                title: "DEEZER",
                 subtitle:
-                  "Check new or latest popular music now in all streaming platform",
+                  "Check new or latest popular music chart now on Deezer",
                 image_url:
-                  "https://res.cloudinary.com/host8000/image/upload/v1619165363/mylo/music_ltnmqw.png",
+                  "https://res.cloudinary.com/host8000/image/upload/v1619167224/mylo/deezer_yxwvdr.png",
                 buttons: [
                   {
                     type: "postback",
                     title: "CHECK",
-                    payload: "MUSIC",
+                    payload: "DEEZER",
                   },
                 ],
               },
@@ -142,29 +169,37 @@ export const sendMenu = (sender_psid) => {
   });
 };
 
-const sendMessage = (sender_psid, response) => {
-  // Construct the message body
-  let request_body = {
-    recipient: {
-      id: sender_psid,
-    },
-    message: response,
+export const getMusic = (sender_psid) => {
+  const options = {
+    method: "GET",
+    url: "http://api.deezer.com/chart",
   };
 
-  // Send the HTTP request to the Messenger Platform
-  request(
-    {
-      uri: "https://graph.facebook.com/v6.0/me/messages",
-      qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
-      method: "POST",
-      json: request_body,
-    },
-    (err, res, body) => {
-      if (!err) {
-        console.log("message sent!");
-      } else {
-        console.error("Unable to send message:" + err);
-      }
-    }
-  );
+  request(options, (error, response, body) => {
+    if (error) throw new Error(error);
+
+    console.log(body);
+  });
 };
+
+export const getVideo = (sender_psid) => {};
+
+export const getGames = (sender_psid) => {
+  const options = {
+    method: "GET",
+    url: "https://rawg-video-games-database.p.rapidapi.com/games",
+    headers: {
+      "x-rapidapi-key": "b4e16946a8msh61d5b4576cc6037p1627b8jsn60c13f8e3678",
+      "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
+      useQueryString: true,
+    },
+  };
+
+  request(options, (error, response, body) => {
+    if (error) throw new Error(error);
+
+    console.log(body);
+  });
+};
+
+export const getWeather = (sender_psid) => {};

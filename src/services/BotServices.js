@@ -169,6 +169,56 @@ export const sendMenu = (sender_psid) => {
   });
 };
 
+export const sendMusicMenu = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response = {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "generic",
+            elements: [
+              {
+                title: "DEEZER",
+                subtitle:
+                  "Check new or latest popular music chart now on Deezer",
+                image_url:
+                  "https://res.cloudinary.com/host8000/image/upload/v1619167224/mylo/deezer_yxwvdr.png",
+                buttons: [
+                  {
+                    type: "postback",
+                    title: "TRACKS",
+                    payload: "DEEZER_TRACKS",
+                  },
+                  {
+                    type: "postback",
+                    title: "ALBUMS",
+                    payload: "DEEZER_ALBUMS",
+                  },
+                  {
+                    type: "postback",
+                    title: "ARTISTS",
+                    payload: "DEEZER_ARTISTS",
+                  },
+                  {
+                    type: "postback",
+                    title: "PLAYLISTS",
+                    payload: "DEEZER_PLAYLISTS",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      };
+      // Send message
+      await sendMessage(sender_psid, response);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 export const getMusic = (sender_psid) => {
   const options = {
     method: "GET",

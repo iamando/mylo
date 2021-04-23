@@ -115,11 +115,6 @@ export const sendMenu = (sender_psid) => {
                     title: "DEEZER",
                     payload: "DEEZER",
                   },
-                  {
-                    type: "postback",
-                    title: "DEEZER",
-                    payload: "DEEZER",
-                  },
                 ],
               },
               {
